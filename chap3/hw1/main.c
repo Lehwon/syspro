@@ -1,27 +1,46 @@
 #include <stdio.h>
 #include <string.h>
 #include "copy.h"
+#define REPEAT 5
 
-char line[MAXLINE];
-char longest[MAXLINE][MAXLINE];
+char line[REPEAT][MAXLINE];
 
-int main(){
-  int len;
-  int max;
-  max = 0;
+void sortLine(int len[]) {
+	char temp[MAXLINE];
+	int tempLen;
 
-  while(gets(line) != NULL) {
-    len = strlen(line);
+	for(int i = 0; i < REPEAT - 1; i++) {
+		for(int j = 0; j < REPEAT - i - 1; j++) {
+			if(len[j] < len[j+1]){
+			strcpy(temp, line[j]);
+			strcpy(line[j], line[j+1]);
+			strcpy(line[j+1], temp);
 
-    if(len > max) {
-       max = len;
-       copy(line, longest);
-      }
-    }
+			tempLen = len[j];
+			len[j] = len[j+1];
+			len[j+1] = tempLen;
+			}
+		}
+	}
+}
 
-  if(max > 0)
-    printf("%s \n", longest);
+
+int main(void){
+  int len[REPEAT];
+  int i = 0;
+
+  for(i = 0; i < REPEAT; i++) {
+	  fgets(line[i], MAXLINE, stdin);
+	  line[i][strcspn(line[i], "\n")] = '\0';
+  }
+  
+  for(i = 0; i < REPEAT; i++)
+	  len[i] = strlen(line[i]);
+
+  sortLine(len);
+
+  for(i = 0; i < REPEAT; i++)
+    printf("%s \n", line[i]);
 
   return 0;
 }
-
