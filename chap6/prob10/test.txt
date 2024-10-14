@@ -1,0 +1,5 @@
+text file for testing below commands
+"ls -al"
+"stat"
+"ls -i"
+"touch"
