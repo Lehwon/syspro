@@ -1,0 +1,4 @@
+text file for copy test.
+this is second line
+file copy test
+.

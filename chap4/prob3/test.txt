@@ -1,0 +1,4 @@
+text file ofr line number
+this is second line
+this is third line
+.
